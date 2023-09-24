@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_ELEMENT 200 
+#define MAX_ELEMENT 200
 
 typedef struct {
     int key;
@@ -14,11 +14,6 @@ typedef struct {
 void init(HeapType *h) {
     h -> heap_size = 0;
 }
-
-//left_child of i = i * k - (k - 2)
-//parent index of l = (l + k - 2) / k
-
-// insert 하는 부분은 교수님께서 제공해 주신 식을 이용해 기존 max_heap 코드에서 간단한 수정으로 해결하였지만, delete 부분은 머리속에 잘 그려지지 않아 직접 노트에 구조를 그려보며 알고리즘을 생각했습니다. 직접 그리며 생각해 보니 정리가 더 잘 되었고, 따라서 for 문을 통해 자식을 모두 확인해 크기를 비교하고 제일 큰 자식을 찾아 그 자식의 index를 child에 넣었습니다.
 
 void insert_max_heap(HeapType *h, element item, int k) {
     //k-max-heap(자식이 k개인 완전 k-nary tree를 이용한 heap))이 되도록 자료를 입력
@@ -82,64 +77,54 @@ void print_heap(HeapType *h) {
     }
     printf("\n");
 }
-    
-int main(void) {
-    
-    // k=3일 때 배열에 3진 최대히프에 { 10,8,8,9,5,4,3, 2,1,3, 6,7,4} 대하여 삭제 연산이 맞게 되는지 테스트해 보시오
-    element e[MAX_ELEMENT] = { 10, 8, 8, 9, 5, 4, 3, 2, 1, 3, 6, 7, 4 };
+
+int kSmallNumber(element e[], int k, int num) {
     HeapType heap;
     init(&heap);
-    int num = 13;
-    int k = 3;
-    
-    printf("insert\n");
-    for (int i = 0; i < num; i++) {
-        insert_max_heap(&heap, e[i], k);
+    int answer = 0;
+    element kSmallNumber;
+        
+    printf("\n\ninsert\n");
+    for (int i = 0; i < k; i++) {
+        insert_max_heap(&heap, e[i], k - 1);
     }
     print_heap(&heap);
     printf("\n");
     
+    kSmallNumber = delete_max_heap(&heap, k - 1);
+    answer = kSmallNumber.key;
     
-    printf("delete\n");
-    for (int i = 0; i < num; i++) {
-        delete_max_heap(&heap, k);
-        print_heap(&heap);
+    for (int i = k; i < num; i++) {
+        if (answer > e[i].key) {
+            insert_max_heap(&heap, e[i], k - 1);
+            kSmallNumber = delete_max_heap(&heap, k - 1);
+            answer = kSmallNumber.key;
+        }
     }
     
-    // 사이즈 10이상인 정렬 되지 않은 정수형 배열을 위의 heap_sort를 이용하여정렬하시오.
-    printf("sort\n");
-    heap_sort(e, num, k);
-    for (int i = 0; i < num; i++) {
-        printf("%d ", e[i].key);
+    return answer;
+}
+    
+int main(void) {
+    
+    element e[MAX_ELEMENT] = { 2, 5, 4, 7, 6, 9};
+    int k;
+    int num = 6;
+    while (1) {
+        printf("몇 번째로 작은 수를 찾고 싶나요?>> ");
+        scanf("%d", &k);
+        
+        if (k < num) {
+            break;
+        }
+        printf("현재 배열에 %d개의 숫자가 있습니다. %d이하의 수를 입력해주세요.\n", num, num);
     }
     
-    // k값을 여러 가지 경우로 해서 test해 보시오.
-    element e2[MAX_ELEMENT] = { 4, 6, 2, 10, 9, 3, 5, 8, 1, 2, 3 };
-    HeapType heap2;
-    init(&heap2);
-    num = 11;
-    k = 4;
     
-    printf("\n\ninsert\n");
-    for (int i = 0; i < num; i++) {
-        insert_max_heap(&heap2, e2[i], k);
-    }
-    print_heap(&heap2);
-    printf("\n");
+    printf("%d번 째로 작은 숫자는 %d\n", k, kSmallNumber(e, k, num));
     
-    
-    printf("delete\n");
-    for (int i = 0; i < num; i++) {
-        delete_max_heap(&heap2, k);
-        print_heap(&heap2);
-    }
-    
-    printf("sort\n");
-    heap_sort(e2, num, k);
-    for (int i = 0; i < num; i++) {
-        printf("%d ", e2[i].key);
-    }
-    printf("\n");
     
     return 0;
 }
+
+// 3번에서 해결한 코드를 활용해 문제를 풀었습니다. 설명 동영상에서 알려주신 알고리즘대로 k번 째로 작은 수를 찾고자 하면 배열에서 k번 째 까지 max_heap으로 만든 후, 그 다음 index의 숫자와 비교해 heap에서 delete된 수가 더 클 경우 heap에 insert하고 다시 delete하는 과정을 반복했습니다. 몇 번째로 작은 수를 찾고 싶은지 입력 받는 과정에서 배열에 있는 숫자의 개수보다 큰 수를 입력했을 경우 if문을 통해 검사하여 다시 입력받도록 하였습니다.

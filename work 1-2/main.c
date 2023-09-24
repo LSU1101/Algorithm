@@ -66,6 +66,7 @@ void delete_element(HeapType *h, int number) {
         if ((h -> heap[i].key) == number) {
             parent = i;
             child = i * 2;
+            break;
         }
     }
     
