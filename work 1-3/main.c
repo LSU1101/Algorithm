@@ -13,7 +13,7 @@ typedef struct {
 void init(HeapType *h) {
     //
 }
-//left_child of i = i * k - (k-2)
+//left_child of i = i * k - (k - 2)
 //parent index of l = (l + k - 2) / k
 
 void insert_max_heap(HeapType *h, element item, int k) {
@@ -26,7 +26,9 @@ element delete_max_heap(HeapType *h, int k) {
 }
 
 void heap_sort(element a[], int n, int k) { //k-max-heap을 이용하여 정렬한다.
-    int i; HeapType h; init(&h); 
+    int i;
+    HeapType h;
+    init(&h);
     
     for (i = 0; i < n; i++) {
         insert_max_heap(&h, a[i], k);
