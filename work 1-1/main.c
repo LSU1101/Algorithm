@@ -57,6 +57,13 @@ element delete_max_heap(HeapType *h) {
     return item;
 }
 
+void print_heap(HeapType *h) {
+    for(int i = 1; i <= h -> heap_size; i++) {
+        printf("< %s > ",h -> heap[i].key);
+    }
+    printf("\n");
+}
+
 int main(void) {
     element e1 = { "egg", 1234 }, e2 = { "structure", 321 }, e3 = { "sand", 456 };
     element e4, e5, e6;
@@ -65,10 +72,19 @@ int main(void) {
     heap = create();
     init(heap);
     
+    printf("insert\n");
     insert_max_heap(heap, e1);
-    insert_max_heap(heap, e2);
-    insert_max_heap(heap, e3);
+    print_heap(heap);
     
+    insert_max_heap(heap, e2);
+    print_heap(heap);
+    
+    insert_max_heap(heap, e3);
+    print_heap(heap);
+    printf("\n");
+    
+    
+    printf("delete\n");
     e4 = delete_max_heap(heap);
     printf("< %s > ", e4.key);
     e5 = delete_max_heap(heap);
