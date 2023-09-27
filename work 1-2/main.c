@@ -86,6 +86,23 @@ void delete_element(HeapType *h, int number) {
         child *= 2;
     }
     h -> heap[parent] = temp;
+    
+    int pparent = parent / 2; // pparent는 parent의 부모 노드
+    element ttmp;
+
+    if (child > h -> heap_size && h -> heap[parent].key > h -> heap[pparent].key) {
+
+       while (h -> heap[parent].key > h -> heap[pparent].key) {
+
+          ttmp = h -> heap[pparent];
+          h -> heap[pparent] = h -> heap[parent];
+
+          h -> heap[parent] = ttmp;
+
+          parent = pparent;
+          pparent /= 2;
+       }
+    }
 }
 // 처음에는 기존 max_heap에서 사용하는 delete_max_heap 함수를 참고해 문제 해결하려 하여 1차원적인 생각으로 item = h -> heap[parent]; 부분에 parent대신 number를 넣어버렸습니다. 그러나 40이라는 값이 아닌 40이 있는 index를 찾아야 한다는 것을 깨달았고, 반복문으로 히프트리를 돌며 if문을 이용해 40이 있는 곳의 index를 찾고 그 index를 부모 노드로 하여 문제를 해결했습니다.
 
@@ -109,5 +126,6 @@ int main(void) {
         element a = delete_max_heap(&heap1);
         printf("%d ", a.key);
     }
+    printf("\n");
     return 0;
 }

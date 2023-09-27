@@ -43,10 +43,21 @@ element delete_max_heap(HeapType *h, int k) {
     child = 2;
     
     while (child <= h -> heap_size) {
-        for (int i = 1; i <= k; i++) {
-            if ((child < h -> heap_size) && (h -> heap[child].key) < (h -> heap[child + i].key)) {
-                child += i;
-            }
+        int max = h->heap[child].key;
+        int count = 1;
+        
+        for (int i = 1; i < k ; i++) {
+           if (child + count > h->heap_size) {
+              break;
+           }
+           if (max < h->heap[child + count].key) {
+              max = h->heap[child + count].key;
+              child += count;
+              count = 1;
+           }
+           else {
+           count++;
+           }
         }
 
         if (temp.key >= h -> heap[child].key) {
