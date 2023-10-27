@@ -70,21 +70,21 @@ void shortest_path(GraphType* g, int start) {
             if (!found[w]) {
                 if (distance[u] + g -> weight[u][w] < distance[w]) {
                     distance[w] = distance[u] + g -> weight[u][w];
-                    parent[w] = u;
+                    parent[w] = u; // 부모 정점 저장
                 }
             }
         }
     }
 }
 
-// 1번과 같이 parent 배열을 추가해 부모 정점을 저장하고 부모 정점을 따라가며 경로를 출력하려 헀습니다. 이 과정에서 재귀 함수를 사용하는 것이 적절하다 판단헀고, 직접 함수의 재귀 과정을 그리며 구조를 짜고 이해했습니다.
+// 1번과 같이 parent 배열을 추가해 부모 정점을 저장하고 부모 정점을 따라가며 경로를 출력하려 헀습니다. 이 과정에서 재귀 함수를 사용하는 것이 적절하다 판단헀고, 재귀 함수의 작동 구조가 머리 속에 잘 그려지지 않아 직접 함수의 재귀 과정을 그리며 구조를 짜고 이해했습니다.
 
 void print_shortest_path(GraphType *g, int start, int end) {
-    if (end == start) {
+    if (end == start) { // 정점의 시작과 끝이 같으면 이 문제에서는 0을 만난 경우
         printf("%d ", start);
     } else {
-        print_shortest_path(g, start, parent[end]);
-        printf("%d ", end);
+        print_shortest_path(g, start, parent[end]); // 부모 정점을 end로 해서 함수 실행
+        printf("%d ", end); // 재귀 후 정점 출력
     }
 }
 

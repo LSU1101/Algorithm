@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>12-1.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
 		<key>GPT 2-1.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,16 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>GPT 2-3.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
+		<key>GPT 2-5.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
 		</dict>
 		<key>Work.xcscheme_^#shared#^_</key>
 		<dict>
@@ -78,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>7EB364BC2AC0982500BC0E07</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EECF7102AEAD974002539A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
