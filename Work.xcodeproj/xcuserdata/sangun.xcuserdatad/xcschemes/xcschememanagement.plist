@@ -12,22 +12,22 @@
 		<key>GPT 2-1.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>24</integer>
 		</dict>
 		<key>GPT 2-2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>18</integer>
 		</dict>
 		<key>GPT 2-3.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>6</integer>
 		</dict>
 		<key>GPT 2-5.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>25</integer>
 		</dict>
 		<key>Work.xcscheme_^#shared#^_</key>
 		<dict>
@@ -38,6 +38,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
+		</dict>
+		<key>eunbi 2-3.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
 		</dict>
 		<key>work 1-1.xcscheme_^#shared#^_</key>
 		<dict>
@@ -62,21 +67,31 @@
 		<key>work 2-1.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>4</integer>
 		</dict>
 		<key>work 2-2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>5</integer>
 		</dict>
 		<key>work 2-3.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>15</integer>
+		</dict>
+		<key>work 2-5.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>7E13E3EA2AEE8A5200C2E1DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7EB364982ABDA5B100BC0E07</key>
 		<dict>
 			<key>primary</key>
@@ -93,6 +108,21 @@
 			<true/>
 		</dict>
 		<key>7EB364BC2AC0982500BC0E07</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EECF6D92AE7B93B002539A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EECF6EF2AE7C0CB002539A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EECF7052AEAD29A002539A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

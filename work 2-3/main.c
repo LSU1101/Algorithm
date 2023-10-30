@@ -12,7 +12,7 @@ typedef struct GraphType {
 } GraphType;
 
 int A[MAX_VERTICES][MAX_VERTICES];
-int parent[MAX_VERTICES];
+int parent[MAX_VERTICES][MAX_VERTICES];
 
 void printA(GraphType *g) {
     int i, j;
@@ -37,6 +37,8 @@ void floyd(GraphType *g) {
             A[i][j] = g -> weight[i][j];
         }
     }
+    
+    
     printA(g);
     
     for (k = 0; k < g -> n; k++) {
@@ -44,7 +46,7 @@ void floyd(GraphType *g) {
             for (j = 0; j < g -> n; j++) {
                 if (A[i][k] + A[k][j] < A[i][j]) {
                     A[i][j] = A[i][k] + A[k][j];
-                    parent[i] = k;
+                    parent[i][j] = k; // 최단 경로 저장
                 }
             }
         }
@@ -52,17 +54,16 @@ void floyd(GraphType *g) {
     }
 }
 
-void print_path(GraphType *g, int start, int end) {
-    
-    if (start == end) {
-        printf("%d", start);
+void print_path(int start, int end) {
+    if (parent[start][end] != 0) {
+        print_path(start, parent[end][start]);
+        printf("%d -> ", parent[start][end]);
+        print_path(parent[start][end], end);
     }
-    print_path(g, start, parent[start]);
-    printf("%d ", parent[start]);
-    print_path(g, parent[start], end);
     
 }
 
+// 2번과 같이 print_path 함수에 재귀를 사용해 문제를 해결했습니다. 그러나 문제를 푸는 중 계속해서 무한루프가 발생해 if (parent[start][end] != 0) 를 이용해 거쳐가야 할 정점이 없는 경우 실행하지 않도록 했습니다.
 int main(void) {
     GraphType g = {7,
         {{0, 7, INF, INF, 3, 10, INF }, // 0
@@ -76,7 +77,14 @@ int main(void) {
     
     floyd(&g);
     
-    print_path(&g, 0, 6);
+    for (int i = 0; i < g.n; i++) {
+        for (int j = 0; j < g.n; j++) {
+            printf("%d -> ", i);
+            print_path(i, j);
+            printf("%d 거리: %d\n", j, A[i][j]);
+        }
+        printf("\n");
+    }
     
     return 0;
 }

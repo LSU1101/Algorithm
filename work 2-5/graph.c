@@ -1,22 +1,7 @@
+#include "graph.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-
-#define TRUE 1
-#define FALSE 0
-#define MAX_VERTICES 100
-#define INF 1000000 /* 무한대 (연결이 없는 경우) */
-
-typedef struct GraphNode {
-    int vertex;
-    int weight;
-    struct GraphNode* next;
-} GraphNode;
-
-typedef struct GraphType {
-    int n;               // 정점의 개수
-    GraphNode* adj_list[MAX_VERTICES];
-} GraphType;
 
 int distance[MAX_VERTICES]; /* 시작정점으로부터의 최단경로 거리 */
 int found[MAX_VERTICES];   /* 방문한 정점 표시 */
@@ -120,13 +105,3 @@ void shortest_path(GraphType* g, int start) {
         }
     }
 }
-
-// 10.2 코드를 참고해 GraphNode 구조체를 만들어 그래프를 연결리스트로 구현했습니다. 그리고 이 그래프에는 가중치가 있기에 10.2 구조체에 weight 변수를 추가했습니다. shortest_path 부분도 연결리스트에 맞게 수정하여 작성헀습니다. 또한 add_edge 함수를 호출하는 과정이 메인 함수에 모두 써 넣기에는 메인 함수 부분이 너무 길어져 creat_graph라는 함수를 새로 만들어  10.2에 init 함수와 합쳐 작성했습니다.
-
-int main(void) {
-    GraphType g;
-    create_graph(&g);
-    shortest_path(&g, 0);
-    return 0;
-}
-

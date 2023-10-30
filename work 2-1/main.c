@@ -52,13 +52,13 @@ void prim(GraphType *g, int s) {
         
         if (parent[u] != -1) {
             printf("간선 (%d, %d) \n", parent[u], u);
-        }
+        } // 값이 -1 이면 출력하지 않음
         
         for (v = 0; v < g->n; v++) {
             if (g->weight[u][v] != INF) {
                 if (!selected[v] && g->weight[u][v] < distance[v]) {
                     distance[v] = g->weight[u][v];
-                    parent[v] = u;
+                    parent[v] = u; // 부모 정점 저장
                 }
             }
         }
